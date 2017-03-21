@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MidTransBodyRequestBuilder", "MidTransBodyRequestBuilder\MidTransBodyRequestBuilder.csproj", "{505AA464-5AD5-45FF-8A81-C26EE86E1992}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MidTrans.Core", "MidTrans.Core\MidTrans.Core.csproj", "{CF132A75-3FA0-4A65-AA94-A7A5100754B3}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{505AA464-5AD5-45FF-8A81-C26EE86E1992}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{505AA464-5AD5-45FF-8A81-C26EE86E1992}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{505AA464-5AD5-45FF-8A81-C26EE86E1992}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{505AA464-5AD5-45FF-8A81-C26EE86E1992}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF132A75-3FA0-4A65-AA94-A7A5100754B3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF132A75-3FA0-4A65-AA94-A7A5100754B3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF132A75-3FA0-4A65-AA94-A7A5100754B3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF132A75-3FA0-4A65-AA94-A7A5100754B3}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
