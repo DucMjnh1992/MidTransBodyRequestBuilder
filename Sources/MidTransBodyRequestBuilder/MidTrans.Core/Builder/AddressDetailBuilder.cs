@@ -82,7 +82,7 @@ namespace MidTrans.Core.Builder
             return this;
         }
 
-        public AddressDetailBuilder SetPostal(string postalCode)
+        public AddressDetailBuilder SetPostalCode(string postalCode)
         {
             this.postalCode = postalCode;
 

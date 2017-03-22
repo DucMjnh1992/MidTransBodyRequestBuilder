@@ -34,14 +34,14 @@ namespace MidTrans.Core.Builder
             return this;
         }
 
-        public InstallmentBuilder SetLastName(bool required)
+        public InstallmentBuilder SetRequired(bool required)
         {
             this.required = required;
 
             return this;
         }
 
-        public InstallmentBuilder SetFirstName(Term term)
+        public InstallmentBuilder SetTerm(Term term)
         {
             this.term = term;
 

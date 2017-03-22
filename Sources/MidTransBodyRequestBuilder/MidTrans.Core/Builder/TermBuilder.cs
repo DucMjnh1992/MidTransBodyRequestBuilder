@@ -44,17 +44,59 @@ namespace MidTrans.Core.Builder
 
             return this;
         }
+        
+        public TermBuilder AddItemToBnis(string item)
+        {
+            this.AddToCollection<string>(this.bnis, item);
+
+            return this;
+        }
+
+        public TermBuilder AddItemToBnisUnique(string item)
+        {
+            this.AddToCollectionUnique<string>(this.bnis, item, this.StringEquals);
+
+            return this;
+        }
 
         public TermBuilder SetMandiris(IList<string> mandiris)
         {
             this.mandiris = mandiris;
 
             return this;
-        }        
-        
+        }
+
+        public TermBuilder AddItemToMandiris(string item)
+        {
+            this.AddToCollection<string>(this.mandiris, item);
+
+            return this;
+        }
+
+        public TermBuilder AddItemToMandirisUnique(string item)
+        {
+            this.AddToCollectionUnique<string>(this.mandiris, item, this.StringEquals);
+
+            return this;
+        }
+
         public TermBuilder SetCimbs(IList<string> cimbs)
         {
             this.cimbs = cimbs;
+
+            return this;
+        }
+
+        public TermBuilder AddItemToCimbs(string item)
+        {
+            this.AddToCollection<string>(this.cimbs, item);
+
+            return this;
+        }
+
+        public TermBuilder AddItemToCimbsUnique(string item)
+        {
+            this.AddToCollectionUnique<string>(this.cimbs, item, this.StringEquals);
 
             return this;
         }
@@ -66,9 +108,37 @@ namespace MidTrans.Core.Builder
             return this;
         }
 
+        public TermBuilder AddItemToBcas(string item)
+        {
+            this.AddToCollection<string>(this.bcas, item);
+
+            return this;
+        }
+
+        public TermBuilder AddItemToBcasUnique(string item)
+        {
+            this.AddToCollectionUnique<string>(this.bcas, item, this.StringEquals);
+
+            return this;
+        }
+
         public TermBuilder SetOfflines(IList<string> offlines)
         {
             this.offlines = offlines;
+
+            return this;
+        }
+
+        public TermBuilder AddItemToOfflines(string item)
+        {
+            this.AddToCollection<string>(this.offlines, item);
+
+            return this;
+        }
+
+        public TermBuilder AddItemToOfflinesUnique(string item)
+        {
+            this.AddToCollectionUnique<string>(this.offlines, item, this.StringEquals);
 
             return this;
         }

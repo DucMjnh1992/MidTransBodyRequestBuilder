@@ -3,6 +3,6 @@
     public class TransactionDetail
     {
         public string OrderId { get; set; }
-        public int GrossAmount { get; set; }
+        public double GrossAmount { get; set; }
     }
 }

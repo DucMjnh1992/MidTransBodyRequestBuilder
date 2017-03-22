@@ -41,6 +41,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Builder\Abstract\BaseBuilder.cs" />
+    <Compile Include="Builder\BodyRequestBuilder.cs" />
+    <Compile Include="Builder\TransactionDetailBuilder.cs" />
     <Compile Include="Builder\TermBuilder.cs" />
     <Compile Include="Builder\ItemDetailBuilder.cs" />
     <Compile Include="Builder\InstallmentBuilder.cs" />

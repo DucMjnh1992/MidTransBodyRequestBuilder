@@ -1,8 +1,6 @@
-﻿using System;
+﻿using MidTrans.Core.Builder;
+using MidTrans.Core.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MidTransBodyRequestBuilder
 {
@@ -10,99 +8,96 @@ namespace MidTransBodyRequestBuilder
     {
         static void Main(string[] args)
         {
+            BodyRequest bodyRequest = BodyRequestBuilder
+                .CreateInstance()
+                .SetTransactionDetail(TransactionDetailBuilder
+                    .CreateInstance()
+                    .SetOrderId("ORDER-101")
+                    .SetGrossAmount(10)
+                    .Build()
+                )
+                .AddItemToItemDetailsUnique(ItemDetailBuilder
+                    .CreateInstance()
+                    .SetId("ITEM1")
+                    .SetPrice(10)
+                    .SetQuantity(1)
+                    .SetName("Midtrans Bear")
+                    .Build()
+                )
+                .AddItemToEnabledPaymentsUnique("credit_card")
+                .AddItemToEnabledPaymentsUnique("mandiri_clickpay")
+                .SetCreditCard(CreditCardBuilder.CreateInstance()
+                    .SetSecure(true)
+                    .SetChannel("migs")
+                    .SetBank("bca")
+                    .SetInstallment(InstallmentBuilder
+                        .CreateInstance()
+                        .SetRequired(false)
+                        .SetTerm(TermBuilder
+                            .CreateInstance()
+                            .AddItemToBnisUnique("3")
+                            .AddItemToBnisUnique("6")
+                            .AddItemToBnisUnique("12")
+                            .SetBnis(new List<string>()
+                            {
+                                "3",
+                                "6",
+                                "12"
+                            })
+                            .AddItemToCimbsUnique("3")
+                            .AddItemToBcasUnique("3")
+                            .AddItemToBcasUnique("6")
+                            .AddItemToBcasUnique("12")
+                            .AddItemToOfflinesUnique("6")
+                            .AddItemToOfflinesUnique("12")
+                            .Build()
+                        )
+                        .Build()
+                    )
+                    .AddItemToWhitelistBinsUnique("48111111")
+                    .AddItemToWhitelistBinsUnique("41111111")
+                    .Build()
+                )
+                .SetCustomerDetail(CustomerDetailBuilder
+                    .CreateInstance()
+                    .SetFirstName("TEST")
+                    .SetLastName("MIDTRANSER")
+                    .SetEmail("test@midtrans.com")
+                    .SetPhone("+628123456")
+                    .SetBillingAddress(AddressDetailBuilder
+                        .CreateInstance()
+                        .SetFirstName("TEST")
+                        .SetLastName("MIDTRANSER")
+                        .SetEmail("test@midtrans.com")
+                        .SetPhone("081 2233 44-55")
+                        .SetAddress("Sudirman")
+                        .SetCity("Jakarta")
+                        .SetPostalCode("12190")
+                        .SetCountryCode("IDN")
+                        .Build()
+                    )
+                    .SetBillingAddress(AddressDetailBuilder
+                        .CreateInstance()
+                        .SetFirstName("TEST")
+                        .SetLastName("MIDTRANSER")
+                        .SetEmail("test@midtrans.com")
+                        .SetPhone("0 8128-75 7-9338")
+                        .SetAddress("Sudirman")
+                        .SetCity("Jakarta")
+                        .SetPostalCode("12190")
+                        .SetCountryCode("IDN")
+                        .Build()
+                    )
+                    .Build()
+                )
+                .SetExpiry(ExpiryBuilder
+                    .CreateInstance()
+                    .SetStartTime("2017-04-13 18:11:08 +0700")
+                    .SetUnit("minutes")
+                    .SetDuration(1)
+                    .Build()
+                 )
+                .Build();
         }
     }
-}
-
-
-public class Rootobject
-{
-    public Transaction_Details transaction_details { get; set; }
-    public Item_Details[] item_details { get; set; }
-    public string[] enabled_payments { get; set; }
-    public Credit_Card credit_card { get; set; }
-    public Customer_Details customer_details { get; set; }
-    public Expiry expiry { get; set; }
-    public string custom_field1 { get; set; }
-    public string custom_field2 { get; set; }
-    public string custom_field3 { get; set; }
-}
-
-public class Transaction_Details
-{
-    public string order_id { get; set; }
-    public int gross_amount { get; set; }
-}
-
-public class Credit_Card
-{
-    public bool secure { get; set; }
-    public string channel { get; set; }
-    public string bank { get; set; }
-    public Installment installment { get; set; }
-    public string[] whitelist_bins { get; set; }
-}
-
-public class Installment
-{
-    public bool required { get; set; }
-    public Terms terms { get; set; }
-}
-
-public class Terms
-{
-    public int[] bni { get; set; }
-    public int[] mandiri { get; set; }
-    public int[] cimb { get; set; }
-    public int[] bca { get; set; }
-    public int[] offline { get; set; }
-}
-
-public class Customer_Details
-{
-    public string first_name { get; set; }
-    public string last_name { get; set; }
-    public string email { get; set; }
-    public string phone { get; set; }
-    public Billing_Address billing_address { get; set; }
-    public Shipping_Address shipping_address { get; set; }
-}
-
-public class Billing_Address
-{
-    public string first_name { get; set; }
-    public string last_name { get; set; }
-    public string email { get; set; }
-    public string phone { get; set; }
-    public string address { get; set; }
-    public string city { get; set; }
-    public string postal_code { get; set; }
-    public string country_code { get; set; }
-}
-
-public class Shipping_Address
-{
-    public string first_name { get; set; }
-    public string last_name { get; set; }
-    public string email { get; set; }
-    public string phone { get; set; }
-    public string address { get; set; }
-    public string city { get; set; }
-    public string postal_code { get; set; }
-    public string country_code { get; set; }
-}
-
-public class Expiry
-{
-    public string start_time { get; set; }
-    public string unit { get; set; }
-    public int duration { get; set; }
-}
-
-public class Item_Details
-{
-    public string id { get; set; }
-    public int price { get; set; }
-    public int quantity { get; set; }
-    public string name { get; set; }
 }

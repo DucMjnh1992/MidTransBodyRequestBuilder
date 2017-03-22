@@ -67,9 +67,23 @@ namespace MidTrans.Core.Builder
             return this;
         }
 
-        public CreditCardBuilder SetPhone(IList<string> whitelistBins)
+        public CreditCardBuilder SetWhitelistBins(IList<string> whitelistBins)
         {
             this.whitelistBins = whitelistBins;
+
+            return this;
+        }
+
+        public CreditCardBuilder AddItemToWhitelistBins(string item)
+        {
+            this.AddToCollection<string>(this.whitelistBins, item);
+
+            return this;
+        }
+
+        public CreditCardBuilder AddItemToWhitelistBinsUnique(string item)
+        {
+            this.AddToCollectionUnique<string>(this.whitelistBins, item, this.StringEquals);
 
             return this;
         }

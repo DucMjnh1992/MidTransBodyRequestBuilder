@@ -19,6 +19,11 @@ namespace MidTrans.Core.Builder
 
         public abstract T Build();
 
+        protected bool StringEquals(string item1, string item2)
+        {
+            return item1 == item2;
+        }
+
         protected IList<V> AddToCollection<V>(IList<V> collection, V item)
         {
             if (item == null)
@@ -78,7 +83,7 @@ namespace MidTrans.Core.Builder
             return collection;
         }
 
-        protected void RemoveAllWhenMatchExpression<V>(IList<V> collection, V item, Func<V, V, bool> isMatchExpression)
+        protected void RemoveAllFromCollectionWhenMatchExpression<V>(IList<V> collection, V item, Func<V, V, bool> isMatchExpression)
         {
             if (collection == null
                 || item == null)
@@ -104,7 +109,7 @@ namespace MidTrans.Core.Builder
             }
         }
 
-        protected void RemoveAllWhenMatchExpression<V>(IList<V> collection, IList<V> items, Func<V, V, bool> isMatchExpression)
+        protected void RemoveAllFromCollectionWhenMatchExpression<V>(IList<V> collection, IList<V> items, Func<V, V, bool> isMatchExpression)
         {
             if (collection == null
                 || items == null)
@@ -117,9 +122,9 @@ namespace MidTrans.Core.Builder
                 throw new ArgumentNullException(nameof(isMatchExpression));
             }
 
-            foreach (V item in collection)
+            for (int i = collection.Count - 1; i >= -1; i--)
             {
-                this.Remove(collection, item, isMatchExpression);
+                this.RemoveAllFromCollectionWhenMatchExpression(collection, collection[i], isMatchExpression);
             }
         }
     }
