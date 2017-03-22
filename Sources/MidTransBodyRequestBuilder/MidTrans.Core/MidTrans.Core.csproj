@@ -55,6 +55,7 @@
     <Compile Include="Builder\CustomerDetailBuilder.cs" />
     <Compile Include="Builder\CreditCardBuilder.cs" />
     <Compile Include="Builder\AddressDetailBuilder.cs" />
+    <Compile Include="Common\RequestMethod.cs" />
     <Compile Include="Models\BodyRequest.cs" />
     <Compile Include="Builder\Interface\IBuilder.cs" />
     <Compile Include="Models\CreditCard.cs" />

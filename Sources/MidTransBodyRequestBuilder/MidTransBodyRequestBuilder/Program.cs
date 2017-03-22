@@ -1,5 +1,6 @@
 ﻿using MidTrans.Core.Adapter;
 using MidTrans.Core.Builder;
+using MidTrans.Core.Common;
 using MidTrans.Core.Models;
 using System;
 using System.Collections.Generic;
@@ -16,8 +17,8 @@ namespace MidTransBodyRequestBuilder
                 .CreateInstance()
                 .SetTransactionDetail(TransactionDetailBuilder
                     .CreateInstance()
-                    .SetOrderId("ORDER-101")
-                    .SetGrossAmount(1)
+                    .SetOrderId("ORDER-106")
+                    .SetGrossAmount(3)
                     .Build()
                 )
                 .AddItemToItemDetailsUnique(ItemDetailBuilder
@@ -26,6 +27,14 @@ namespace MidTransBodyRequestBuilder
                     .SetPrice(1)
                     .SetQuantity(1)
                     .SetName("Midtrans Bear")
+                    .Build()
+                )
+                .AddItemToItemDetailsUnique(ItemDetailBuilder
+                    .CreateInstance()
+                    .SetId("ITEM2")
+                    .SetPrice(1)
+                    .SetQuantity(2)
+                    .SetName("Midtrans Bear 2")
                     .Build()
                 )
                 .AddItemToEnabledPaymentsUnique("credit_card")
@@ -66,7 +75,7 @@ namespace MidTransBodyRequestBuilder
                     .CreateInstance()
                     .SetFirstName("TEST")
                     .SetLastName("MIDTRANSER")
-                    .SetEmail("test@midtrans.com")
+                    .SetEmail("phung.nguyen.duc.minh@miyatsu.vn")
                     .SetPhone("+628123456")
                     .SetBillingAddress(AddressDetailBuilder
                         .CreateInstance()
@@ -109,23 +118,37 @@ namespace MidTransBodyRequestBuilder
 
             #endregion Build full midtrans body reuqest
 
-            #region Build short midtrans body reuqest 
+            //#region Build short midtrans body reuqest 
 
-            bodyRequest = BodyRequestBuilder
-                .CreateInstance()
-                .SetTransactionDetail(TransactionDetailBuilder
-                    .CreateInstance()
-                    .SetOrderId("ORDER-101")
-                    .SetGrossAmount(1)
-                    .Build()
-                )
-                .Build();
+            //bodyRequest = BodyRequestBuilder
+            //    .CreateInstance()
+            //    .SetTransactionDetail(TransactionDetailBuilder
+            //        .CreateInstance()
+            //        .SetOrderId("ORDER-103")
+            //        .SetGrossAmount(1)
+            //        .Build()
+            //    )
+            //    .AddItemToEnabledPaymentsUnique("credit_card")
+            //    .SetCustomerDetail(CustomerDetailBuilder
+            //        .CreateInstance()
+            //        .SetEmail("phung.nguyen.duc.minh@miyatsu.vn")
+            //        .SetPhone("+628123456")
+            //        .Build()
+            //    )
+            //    .Build();
 
-            json = BodyRequestAdapter.Instance.ConvertToJson(bodyRequest);
+            //json = BodyRequestAdapter.Instance.ConvertToJson(bodyRequest);
 
-            Console.WriteLine(json);
+            //Console.WriteLine(json);
 
-            #endregion Build full midtrans body reuqest
+            //#endregion Build full midtrans body reuqest
+
+            RequestMethod requestMethod = new RequestMethod();
+            System.Net.HttpWebRequest request = requestMethod.getRequest("POST", "application/json", "https://app.sandbox.midtrans.com/snap/v1/transactions", json) as System.Net.HttpWebRequest;
+            System.Net.WebResponse response = request.GetResponse();
+            string result = requestMethod.UnPackResponse(response);
+
+            Console.WriteLine(result);
 
             Console.ReadKey();
         }
