@@ -76,14 +76,14 @@ namespace MidTrans.Core.Builder
 
         public CreditCardBuilder AddItemToWhitelistBins(string item)
         {
-            this.AddToCollection<string>(this.whitelistBins, item);
+            this.whitelistBins = this.AddToCollection<string>(this.whitelistBins, item);
 
             return this;
         }
 
         public CreditCardBuilder AddItemToWhitelistBinsUnique(string item)
         {
-            this.AddToCollectionUnique<string>(this.whitelistBins, item, this.StringEquals);
+            this.whitelistBins = this.AddToCollectionUnique<string>(this.whitelistBins, item, this.StringEquals);
 
             return this;
         }

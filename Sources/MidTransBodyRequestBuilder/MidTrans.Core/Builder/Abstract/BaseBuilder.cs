@@ -24,6 +24,11 @@ namespace MidTrans.Core.Builder
             return item1 == item2;
         }
 
+        protected bool IntEquals(int item1, int item2)
+        {
+            return item1 == item2;
+        }
+
         protected IList<V> AddToCollection<V>(IList<V> collection, V item)
         {
             if (item == null)
@@ -73,9 +78,9 @@ namespace MidTrans.Core.Builder
                 positionOfFirstItem = i;
             }
 
-            foreach (V tempItem in duplicateItems)
+            for (int i = collection.Count - 1; i >= 0; i--)
             {
-                collection.Remove(tempItem);
+                collection.Remove(duplicateItems.ElementAt(i));
             }
 
             collection.Insert(positionOfFirstItem, item);

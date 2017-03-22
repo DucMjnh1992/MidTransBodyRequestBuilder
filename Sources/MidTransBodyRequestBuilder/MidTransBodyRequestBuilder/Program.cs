@@ -1,5 +1,7 @@
-﻿using MidTrans.Core.Builder;
+﻿using MidTrans.Core.Adapter;
+using MidTrans.Core.Builder;
 using MidTrans.Core.Models;
+using System;
 using System.Collections.Generic;
 
 namespace MidTransBodyRequestBuilder
@@ -8,18 +10,20 @@ namespace MidTransBodyRequestBuilder
     {
         static void Main(string[] args)
         {
+            #region Build full midtrans body reuqest 
+
             BodyRequest bodyRequest = BodyRequestBuilder
                 .CreateInstance()
                 .SetTransactionDetail(TransactionDetailBuilder
                     .CreateInstance()
                     .SetOrderId("ORDER-101")
-                    .SetGrossAmount(10)
+                    .SetGrossAmount(1)
                     .Build()
                 )
                 .AddItemToItemDetailsUnique(ItemDetailBuilder
                     .CreateInstance()
                     .SetId("ITEM1")
-                    .SetPrice(10)
+                    .SetPrice(1)
                     .SetQuantity(1)
                     .SetName("Midtrans Bear")
                     .Build()
@@ -35,21 +39,21 @@ namespace MidTransBodyRequestBuilder
                         .SetRequired(false)
                         .SetTerm(TermBuilder
                             .CreateInstance()
-                            .AddItemToBnisUnique("3")
-                            .AddItemToBnisUnique("6")
-                            .AddItemToBnisUnique("12")
-                            .SetBnis(new List<string>()
+                            .AddItemToBnisUnique(3)
+                            .AddItemToBnisUnique(6)
+                            .AddItemToBnisUnique(12)
+                            .SetBnis(new List<int>()
                             {
-                                "3",
-                                "6",
-                                "12"
+                                3,
+                                6,
+                                12
                             })
-                            .AddItemToCimbsUnique("3")
-                            .AddItemToBcasUnique("3")
-                            .AddItemToBcasUnique("6")
-                            .AddItemToBcasUnique("12")
-                            .AddItemToOfflinesUnique("6")
-                            .AddItemToOfflinesUnique("12")
+                            .AddItemToCimbsUnique(3)
+                            .AddItemToBcasUnique(3)
+                            .AddItemToBcasUnique(6)
+                            .AddItemToBcasUnique(12)
+                            .AddItemToOfflinesUnique(6)
+                            .AddItemToOfflinesUnique(12)
                             .Build()
                         )
                         .Build()
@@ -76,7 +80,7 @@ namespace MidTransBodyRequestBuilder
                         .SetCountryCode("IDN")
                         .Build()
                     )
-                    .SetBillingAddress(AddressDetailBuilder
+                    .SetShippingAddress(AddressDetailBuilder
                         .CreateInstance()
                         .SetFirstName("TEST")
                         .SetLastName("MIDTRANSER")
@@ -98,6 +102,32 @@ namespace MidTransBodyRequestBuilder
                     .Build()
                  )
                 .Build();
+
+            string json = BodyRequestAdapter.Instance.ConvertToJson(bodyRequest);
+
+            Console.WriteLine(json);
+
+            #endregion Build full midtrans body reuqest
+
+            #region Build short midtrans body reuqest 
+
+            bodyRequest = BodyRequestBuilder
+                .CreateInstance()
+                .SetTransactionDetail(TransactionDetailBuilder
+                    .CreateInstance()
+                    .SetOrderId("ORDER-101")
+                    .SetGrossAmount(1)
+                    .Build()
+                )
+                .Build();
+
+            json = BodyRequestAdapter.Instance.ConvertToJson(bodyRequest);
+
+            Console.WriteLine(json);
+
+            #endregion Build full midtrans body reuqest
+
+            Console.ReadKey();
         }
     }
 }

@@ -5,7 +5,7 @@ namespace MidTrans.Core.Builder
     public class ItemDetailBuilder : BaseBuilder<ItemDetail>, IBuilder<ItemDetail>
     {
         private string id;
-        private double price;
+        private int price;
         private int quantity;
         private string name;
 
@@ -43,7 +43,7 @@ namespace MidTrans.Core.Builder
             return this;
         }
 
-        public ItemDetailBuilder SetPrice(double price)
+        public ItemDetailBuilder SetPrice(int price)
         {
             this.price = price;
 

@@ -5,11 +5,11 @@ namespace MidTrans.Core.Builder
 {
     public class TermBuilder : BaseBuilder<Term>, IBuilder<Term>
     {
-        private IList<string> bnis;
-        private IList<string> mandiris;
-        private IList<string> cimbs;
-        private IList<string> bcas;
-        private IList<string> offlines;
+        private IList<int> bnis;
+        private IList<int> mandiris;
+        private IList<int> cimbs;
+        private IList<int> bcas;
+        private IList<int> offlines;
 
         public TermBuilder()
             : base(null)
@@ -38,107 +38,107 @@ namespace MidTrans.Core.Builder
             return this;
         }
 
-        public TermBuilder SetBnis(IList<string> bnis)
+        public TermBuilder SetBnis(IList<int> bnis)
         {
             this.bnis = bnis;
 
             return this;
         }
         
-        public TermBuilder AddItemToBnis(string item)
+        public TermBuilder AddItemToBnis(int item)
         {
-            this.AddToCollection<string>(this.bnis, item);
+            this.bnis = this.AddToCollection<int>(this.bnis, item);
 
             return this;
         }
 
-        public TermBuilder AddItemToBnisUnique(string item)
+        public TermBuilder AddItemToBnisUnique(int item)
         {
-            this.AddToCollectionUnique<string>(this.bnis, item, this.StringEquals);
+            this.bnis = this.AddToCollectionUnique<int>(this.bnis, item, this.IntEquals);
 
             return this;
         }
 
-        public TermBuilder SetMandiris(IList<string> mandiris)
+        public TermBuilder SetMandiris(IList<int> mandiris)
         {
             this.mandiris = mandiris;
 
             return this;
         }
 
-        public TermBuilder AddItemToMandiris(string item)
+        public TermBuilder AddItemToMandiris(int item)
         {
-            this.AddToCollection<string>(this.mandiris, item);
+            this.mandiris = this.AddToCollection<int>(this.mandiris, item);
 
             return this;
         }
 
-        public TermBuilder AddItemToMandirisUnique(string item)
+        public TermBuilder AddItemToMandirisUnique(int item)
         {
-            this.AddToCollectionUnique<string>(this.mandiris, item, this.StringEquals);
+            this.mandiris = this.AddToCollectionUnique<int>(this.mandiris, item, this.IntEquals);
 
             return this;
         }
 
-        public TermBuilder SetCimbs(IList<string> cimbs)
+        public TermBuilder SetCimbs(IList<int> cimbs)
         {
             this.cimbs = cimbs;
 
             return this;
         }
 
-        public TermBuilder AddItemToCimbs(string item)
+        public TermBuilder AddItemToCimbs(int item)
         {
-            this.AddToCollection<string>(this.cimbs, item);
+            this.cimbs = this.AddToCollection<int>(this.cimbs, item);
 
             return this;
         }
 
-        public TermBuilder AddItemToCimbsUnique(string item)
+        public TermBuilder AddItemToCimbsUnique(int item)
         {
-            this.AddToCollectionUnique<string>(this.cimbs, item, this.StringEquals);
+            this.cimbs = this.AddToCollectionUnique<int>(this.cimbs, item, this.IntEquals);
 
             return this;
         }
 
-        public TermBuilder SetBcas(IList<string> bcas)
+        public TermBuilder SetBcas(IList<int> bcas)
         {
             this.bcas = bcas;
 
             return this;
         }
 
-        public TermBuilder AddItemToBcas(string item)
+        public TermBuilder AddItemToBcas(int item)
         {
-            this.AddToCollection<string>(this.bcas, item);
+            this.bcas = this.AddToCollection<int>(this.bcas, item);
 
             return this;
         }
 
-        public TermBuilder AddItemToBcasUnique(string item)
+        public TermBuilder AddItemToBcasUnique(int item)
         {
-            this.AddToCollectionUnique<string>(this.bcas, item, this.StringEquals);
+            this.bcas = this.AddToCollectionUnique<int>(this.bcas, item, this.IntEquals);
 
             return this;
         }
 
-        public TermBuilder SetOfflines(IList<string> offlines)
+        public TermBuilder SetOfflines(IList<int> offlines)
         {
             this.offlines = offlines;
 
             return this;
         }
 
-        public TermBuilder AddItemToOfflines(string item)
+        public TermBuilder AddItemToOfflines(int item)
         {
-            this.AddToCollection<string>(this.offlines, item);
+            this.offlines = this.AddToCollection<int>(this.offlines, item);
 
             return this;
         }
 
-        public TermBuilder AddItemToOfflinesUnique(string item)
+        public TermBuilder AddItemToOfflinesUnique(int item)
         {
-            this.AddToCollectionUnique<string>(this.offlines, item, this.StringEquals);
+            this.offlines = this.AddToCollectionUnique<int>(this.offlines, item, this.IntEquals);
 
             return this;
         }

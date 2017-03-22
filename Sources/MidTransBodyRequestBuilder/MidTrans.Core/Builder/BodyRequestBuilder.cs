@@ -55,14 +55,14 @@ namespace MidTrans.Core.Builder
 
         public BodyRequestBuilder AddItemToItemDetails(ItemDetail item)
         {
-            this.AddToCollection<ItemDetail>(this.itemDetails, item);
+            this.itemDetails = this.AddToCollection<ItemDetail>(this.itemDetails, item);
 
             return this;
         }
 
         public BodyRequestBuilder AddItemToItemDetailsUnique(ItemDetail item)
         {
-            this.AddToCollectionUnique<ItemDetail>(this.itemDetails, item, this.ItemDetailEquals);
+            this.itemDetails = this.AddToCollectionUnique<ItemDetail>(this.itemDetails, item, this.ItemDetailEquals);
 
             return this;
         }
@@ -87,14 +87,14 @@ namespace MidTrans.Core.Builder
 
         public BodyRequestBuilder AddItemToEnabledPayments(string item)
         {
-            this.AddToCollection<string>(this.enabledPayments, item);
+            this.enabledPayments = this.AddToCollection<string>(this.enabledPayments, item);
 
             return this;
         }
 
         public BodyRequestBuilder AddItemToEnabledPaymentsUnique(string item)
         {
-            this.AddToCollectionUnique<string>(this.enabledPayments, item, this.StringEquals);
+            this.enabledPayments = this.AddToCollectionUnique<string>(this.enabledPayments, item, this.StringEquals);
 
             return this;
         }

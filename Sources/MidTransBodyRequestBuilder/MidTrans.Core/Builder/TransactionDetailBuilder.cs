@@ -5,7 +5,7 @@ namespace MidTrans.Core.Builder
     public class TransactionDetailBuilder : BaseBuilder<TransactionDetail>, IBuilder<TransactionDetail>
     {
         private string orderId;
-        private double grossAmount;
+        private int grossAmount;
 
         public TransactionDetailBuilder()
             : base(null)
@@ -41,7 +41,7 @@ namespace MidTrans.Core.Builder
             return this;
         }
 
-        public TransactionDetailBuilder SetGrossAmount(double grossAmount)
+        public TransactionDetailBuilder SetGrossAmount(int grossAmount)
         {
             this.grossAmount = grossAmount;
 
