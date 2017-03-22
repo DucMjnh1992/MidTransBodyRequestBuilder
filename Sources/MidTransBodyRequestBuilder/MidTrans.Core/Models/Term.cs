@@ -4,10 +4,10 @@ namespace MidTrans.Core.Models
 {
     public class Term
     {
-        public IList<string> Bni { get; set; }
-        public IList<string> Mandiri { get; set; }
-        public IList<string> Cimb { get; set; }
-        public IList<string> Bca { get; set; }
-        public IList<string> Offline { get; set; }
+        public IList<string> Bnis { get; set; }
+        public IList<string> Mandiris { get; set; }
+        public IList<string> Cimbs { get; set; }
+        public IList<string> Bcas { get; set; }
+        public IList<string> Offlines { get; set; }
     }
 }

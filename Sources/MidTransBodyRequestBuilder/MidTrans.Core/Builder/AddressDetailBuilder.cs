@@ -1,5 +1,4 @@
-﻿using System;
-using MidTrans.Core.Models;
+﻿using MidTrans.Core.Models;
 
 namespace MidTrans.Core.Builder
 {
@@ -54,9 +53,8 @@ namespace MidTrans.Core.Builder
 
             return this;
         }        
-
-
-        public AddressDetailBuilder Set(string email)
+        
+        public AddressDetailBuilder SetEmail(string email)
         {
             this.email = email;
 
