@@ -1,9 +1,11 @@
-﻿using MidTrans.Core.Adapter;
+﻿using MidTrans.Core;
+using MidTrans.Core.Adapter;
 using MidTrans.Core.Builder;
 using MidTrans.Core.Common;
 using MidTrans.Core.Models;
 using System;
 using System.Collections.Generic;
+using System.Net;
 
 namespace MidTransBodyRequestBuilder
 {
@@ -17,8 +19,8 @@ namespace MidTransBodyRequestBuilder
                 .CreateInstance()
                 .SetTransactionDetail(TransactionDetailBuilder
                     .CreateInstance()
-                    .SetOrderId("ORDER-106")
-                    .SetGrossAmount(3)
+                    .SetOrderId("ORDER-107")
+                    .SetGrossAmount(1)
                     .Build()
                 )
                 .AddItemToItemDetailsUnique(ItemDetailBuilder
@@ -143,12 +145,57 @@ namespace MidTransBodyRequestBuilder
 
             //#endregion Build full midtrans body reuqest
 
-            RequestMethod requestMethod = new RequestMethod();
-            System.Net.HttpWebRequest request = requestMethod.getRequest("POST", "application/json", "https://app.sandbox.midtrans.com/snap/v1/transactions", json) as System.Net.HttpWebRequest;
-            System.Net.WebResponse response = request.GetResponse();
-            string result = requestMethod.UnPackResponse(response);
+            //RequestMethod requestMethod = new RequestMethod();
+            //System.Net.HttpWebRequest request = requestMethod.getRequest("POST", "application/json", "https://app.sandbox.midtrans.com/snap/v1/transactions", json) as System.Net.HttpWebRequest;
+            //System.Net.WebResponse response = request.GetResponse();
+            //string result = requestMethod.UnPackResponse(response);
 
-            Console.WriteLine(result);
+            //RequestMethod requestMethod = RequestMethod.CreateInstance();
+            //requestMethod.CreateRequest(Config.EndpointSandboxOrProductionByIsProduction);
+            //requestMethod.Request.Method = Config.MidTransEndPointMethod;
+            //requestMethod.Request.Accept = Config.MidTransRequestHeaderAccept;
+            //requestMethod.Request.ContentType = Config.MidTransRequestHeaderContentType;
+            //requestMethod.Request.UseDefaultCredentials = true;
+            //requestMethod.Request.PreAuthenticate = true;
+            //requestMethod.Request.Credentials = CredentialCache.DefaultCredentials;
+
+            //requestMethod.Request.Headers.Add("Authorization", Config.MidTransAuthorization);
+            //requestMethod.WriteContent(json);
+            //requestMethod.GetResponse();
+
+            //string result = requestMethod.UnPackResponse();
+            //Response response = ResponseAdapter.Instance.ConvertFromJson(result);
+            //response.StatusCode = requestMethod.Response.StatusCode;
+
+            //if (response.IsResponseSuccess)
+            //{
+            //    Console.WriteLine($"Request is successful, token: {response.Token}");
+            //}
+            //else
+            //{
+            //    Console.WriteLine($"Request fail, status code = {response.StatusCode}, error messages: ");
+
+            //    foreach (string item in response.ErrorMessages)
+            //    {
+            //        Console.WriteLine(item);
+            //    }
+            //}
+
+            Response response = MidtransRequest.CreateInstance(bodyRequest).Send();
+
+            if (response.IsResponseSuccess)
+            {
+                Console.WriteLine($"Request is successful, token: {response.Token}");
+            }
+            else
+            {
+                Console.WriteLine($"Request fail, status code = {response.StatusCode}, error messages: ");
+
+                foreach (string item in response.ErrorMessages)
+                {
+                    Console.WriteLine(item);
+                }
+            }
 
             Console.ReadKey();
         }

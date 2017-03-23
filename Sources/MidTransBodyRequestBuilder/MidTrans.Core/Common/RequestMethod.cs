@@ -1,4 +1,5 @@
-﻿using System.IO;
+﻿using System;
+using System.IO;
 using System.Net;
 using System.Text;
 
@@ -6,53 +7,60 @@ namespace MidTrans.Core.Common
 {
     public class RequestMethod
     {
-        public WebRequest getRequest(string method, string contentType, string endPoint, string content)
+        public HttpWebRequest Request { get; private set; }
+        public HttpWebResponse Response { get; private set; }
+
+        public static RequestMethod CreateInstance()
         {
-            var request = this.getRequest(method, contentType, endPoint);
-            var dataArray = Encoding.UTF8.GetBytes(content.ToString());
+            return new RequestMethod();
+        }
 
-            request.ContentLength = dataArray.Length;
+        public HttpWebRequest CreateRequest(string endpoint)
+        {
+            this.Request = WebRequest.Create(endpoint) as HttpWebRequest;
 
-            var requestStream = request.GetRequestStream();
+            return this.Request;
+        }
 
-            requestStream.Write(dataArray, 0, dataArray.Length);
+        public HttpWebRequest WriteContent(string content)
+        {
+            if (string.IsNullOrWhiteSpace(content))
+            {
+                throw new ArgumentNullException(nameof(content));
+            }
+
+            byte[] contentBytes = Encoding.UTF8.GetBytes(content);
+            this.Request.ContentLength = contentBytes.Length;
+            Stream requestStream = this.Request.GetRequestStream();
+
+            requestStream.Write(contentBytes, 0, contentBytes.Length);
             requestStream.Flush();
             requestStream.Close();
 
-            return request;
+            return this.Request;
         }
 
-        public WebRequest getRequest(string method, string contentType, string endPoint)
+        public HttpWebResponse GetResponse()
         {
-            var request = WebRequest.Create(endPoint);
+            this.Response = this.Request.GetResponse() as HttpWebResponse;
 
-            request.Method = method;
-            request.ContentType = contentType;
-            request.Timeout = 600000;// set for 3 min by subbu default is 100000 milli sec
-
-            request.UseDefaultCredentials = true;
-            request.PreAuthenticate = true;
-            request.Credentials = CredentialCache.DefaultCredentials;
-
-            request.Headers.Add("Authorization", "Basic VlQtc2VydmVyLWRqX09ucW9NTXpMYzJQUnhaSzljS2Nxajo=");
-
-            return request;
+            return this.Response;
         }
 
-
-        public Stream GetResponseStream(WebResponse response)
+        public StreamReader GetResponseReader()
         {
-            return response.GetResponseStream();
+            Stream responseStream = this.Response.GetResponseStream();
+            StreamReader responseStreamReader = new StreamReader(responseStream);
+
+            return responseStreamReader;
         }
 
-        public StreamReader GetResponseReader(WebResponse response)
+        public string UnPackResponse()
         {
-            return new StreamReader(GetResponseStream(response));
-        }
+            StreamReader responseStreamReader = this.GetResponseReader();
+            string result = responseStreamReader.ReadToEnd();
 
-        public string UnPackResponse(WebResponse response)
-        {
-            return GetResponseReader(response).ReadToEnd();
+            return result;
         }
     }
 }

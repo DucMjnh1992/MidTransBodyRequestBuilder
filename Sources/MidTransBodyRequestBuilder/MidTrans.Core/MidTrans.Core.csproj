@@ -35,6 +35,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -44,9 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Adapter\BaseAdapter.cs" />
     <Compile Include="Adapter\BodyRequestAdapter.cs" />
+    <Compile Include="Adapter\ResponseAdapter.cs" />
     <Compile Include="Builder\Abstract\BaseBuilder.cs" />
     <Compile Include="Builder\BodyRequestBuilder.cs" />
+    <Compile Include="Builder\ResponseDetailBuilder.cs" />
     <Compile Include="Builder\TransactionDetailBuilder.cs" />
     <Compile Include="Builder\TermBuilder.cs" />
     <Compile Include="Builder\ItemDetailBuilder.cs" />
@@ -56,6 +60,10 @@
     <Compile Include="Builder\CreditCardBuilder.cs" />
     <Compile Include="Builder\AddressDetailBuilder.cs" />
     <Compile Include="Common\RequestMethod.cs" />
+    <Compile Include="Common\Utility.cs" />
+    <Compile Include="Config.cs" />
+    <Compile Include="Config\BaseConfig.cs" />
+    <Compile Include="MidtransRequest.cs" />
     <Compile Include="Models\BodyRequest.cs" />
     <Compile Include="Builder\Interface\IBuilder.cs" />
     <Compile Include="Models\CreditCard.cs" />
@@ -63,6 +71,7 @@
     <Compile Include="Models\Expiry.cs" />
     <Compile Include="Models\Installment.cs" />
     <Compile Include="Models\ItemDetail.cs" />
+    <Compile Include="Models\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Models\AddressDetail.cs" />
     <Compile Include="Models\Term.cs" />

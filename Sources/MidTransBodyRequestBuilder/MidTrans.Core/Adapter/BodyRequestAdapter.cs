@@ -3,7 +3,7 @@ using Newtonsoft.Json;
 
 namespace MidTrans.Core.Adapter
 {
-    public class BodyRequestAdapter
+    public class BodyRequestAdapter : BaseAdapter<BodyRequest>
     {
         private static BodyRequestAdapter instance;
 
@@ -13,20 +13,6 @@ namespace MidTrans.Core.Adapter
             {
                 return instance = instance ?? new BodyRequestAdapter();
             }
-        }
-        
-        public BodyRequest ConvertFromJson(string json)
-        {
-            BodyRequest result = JsonConvert.DeserializeObject<BodyRequest>(json);
-
-            return result;
-        }
-
-        public string ConvertToJson(BodyRequest model)
-        {
-            string json = JsonConvert.SerializeObject(model);
-
-            return json;
         }
     }
 }
