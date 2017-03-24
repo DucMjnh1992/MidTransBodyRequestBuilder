@@ -146,7 +146,7 @@ namespace MidTrans.Core
                 return defaultValue;
             }
 
-            string[] values = value.Split(new char[separator], StringSplitOptions.RemoveEmptyEntries);
+            string[] values = value.Split(new char[] { separator }, StringSplitOptions.RemoveEmptyEntries);
 
             return values;
         }

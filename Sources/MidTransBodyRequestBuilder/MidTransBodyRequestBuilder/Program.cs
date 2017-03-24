@@ -13,6 +13,9 @@ namespace MidTransBodyRequestBuilder
     {
         static void Main(string[] args)
         {
+            var a = Config.MidTransCreditCardInstallmentTermBca;
+            Console.ReadKey();
+            return;
             #region Build full midtrans body reuqest 
 
             BodyRequest bodyRequest = BodyRequestBuilder
@@ -122,26 +125,26 @@ namespace MidTransBodyRequestBuilder
 
             //#region Build short midtrans body reuqest 
 
-            //bodyRequest = BodyRequestBuilder
-            //    .CreateInstance()
-            //    .SetTransactionDetail(TransactionDetailBuilder
-            //        .CreateInstance()
-            //        .SetOrderId("ORDER-103")
-            //        .SetGrossAmount(1)
-            //        .Build()
-            //    )
-            //    .AddItemToEnabledPaymentsUnique("credit_card")
-            //    .SetCustomerDetail(CustomerDetailBuilder
-            //        .CreateInstance()
-            //        .SetEmail("phung.nguyen.duc.minh@miyatsu.vn")
-            //        .SetPhone("+628123456")
-            //        .Build()
-            //    )
-            //    .Build();
+            bodyRequest = BodyRequestBuilder
+                .CreateInstance()
+                .SetTransactionDetail(TransactionDetailBuilder
+                    .CreateInstance()
+                    .SetOrderId("ORDER-111")
+                    .SetGrossAmount(1)
+                    .Build()
+                )
+                //.AddItemToEnabledPaymentsUnique("credit_card")
+                //.SetCustomerDetail(CustomerDetailBuilder
+                //    .CreateInstance()
+                //    .SetEmail("phung.nguyen.duc.minh@miyatsu.vn")
+                //    .SetPhone("+628123456")
+                //    .Build()
+                //)
+                .Build();
 
-            //json = BodyRequestAdapter.Instance.ConvertToJson(bodyRequest);
+            json = BodyRequestAdapter.Instance.ConvertToJson(bodyRequest);
 
-            //Console.WriteLine(json);
+            Console.WriteLine(json);
 
             //#endregion Build full midtrans body reuqest
 

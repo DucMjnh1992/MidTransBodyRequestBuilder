@@ -121,9 +121,9 @@ namespace MidTrans.Core
                 requestMethod.Request.Method = Config.MidTransEndPointMethod;
                 requestMethod.Request.Accept = Config.MidTransRequestHeaderAccept;
                 requestMethod.Request.ContentType = Config.MidTransRequestHeaderContentType;
-                requestMethod.Request.UseDefaultCredentials = true;
-                requestMethod.Request.PreAuthenticate = true;
-                requestMethod.Request.Credentials = CredentialCache.DefaultCredentials;
+                //requestMethod.Request.UseDefaultCredentials = true;
+                //requestMethod.Request.PreAuthenticate = true;
+                //requestMethod.Request.Credentials = CredentialCache.DefaultCredentials;
 
                 requestMethod.Request.Headers.Add("Authorization", Config.MidTransAuthorization);
                 requestMethod.WriteContent(jsonContent);
